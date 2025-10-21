@@ -3,9 +3,11 @@ package com.QuizApplication.service;
 import com.QuizApplication.DTO.CourseDTORequest;
 import com.QuizApplication.model.Course;
 import com.QuizApplication.model.Enrollment;
+import com.QuizApplication.model.Quiz;
 import com.QuizApplication.model.User;
 import com.QuizApplication.repo.CourseRepo;
 import com.QuizApplication.repo.EnrollmentRepo;
+import com.QuizApplication.repo.QuizRepo;
 import com.QuizApplication.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,8 @@ public class CourseService {
     EnrollmentRepo enrollmentRepo;
     @Autowired
     UserRepo userRepo;
+    @Autowired
+    QuizRepo quizrepo;
 
     public Course addCourse(CourseDTORequest courseDTORequest) {
 
@@ -61,5 +65,14 @@ public class CourseService {
         enrollment.setCourse(course);
         enrollment.setUser(user);
         return enrollmentRepo.save(enrollment);
+    }
+
+    public Course addQuiz(Integer course_id, String category) {
+        Quiz quiz = quizrepo.findByCategory(category);
+        Course c = courserepo.findById(course_id).orElseThrow(()->new RuntimeException("course not found"));
+        Course course = new Course();
+        course.setId(course_id);
+        course.setQuiz(quiz);
+        return courserepo.save(course);
     }
 }

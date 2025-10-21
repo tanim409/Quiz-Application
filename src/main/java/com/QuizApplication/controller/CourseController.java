@@ -42,17 +42,16 @@ public class CourseController {
     }
 
     @PutMapping("/up/{id}")
-    public ResponseEntity<CourseDTOResponse> updateCourseById(@PathVariable Integer id,
-                                                              @Valid @RequestBody CourseDTORequest courseDTORequest) {
+    public CourseDTOResponse updateCourseById(@PathVariable Integer id,
+                                              @Valid @RequestBody CourseDTORequest courseDTORequest) {
         Course course = courseService.updateCourseById(id, courseDTORequest);
 
-        return ResponseEntity.ok(CourseDTOResponse.courseResponse(course));
+        return CourseDTOResponse.courseResponse(course);
     }
 
     @GetMapping("/getCourse")
-    public ResponseEntity<List<Course>> getAllCourses() {
-        List<Course> courses = courseService.getAllCourses();
-        return ResponseEntity.ok(courses);
+    public List<Course> getAllCourses() {
+        return courseService.getAllCourses();
     }
 
     // Model
@@ -90,12 +89,20 @@ public class CourseController {
     public ExampleDTO addExample(@Valid @RequestBody ExampleDTO exampleDTO,
                                  @PathVariable Integer tutorialId,
                                  @PathVariable Integer sectionId) {
-        Example example = lessonService.addExample(exampleDTO,tutorialId, sectionId);
+        Example example = lessonService.addExample(exampleDTO, tutorialId, sectionId);
         return ExampleDTO.examResponse(example);
     }
+
     @PostMapping("/enrollment/{courseId}/{userName}")
-    public EnrollmentDTO addStudent(@PathVariable Integer courseId,@PathVariable String userName) {
-        Enrollment enrollment = courseService.addStudent(courseId,userName);
+    public EnrollmentDTO addStudent(@PathVariable Integer courseId, @PathVariable String userName) {
+        Enrollment enrollment = courseService.addStudent(courseId, userName);
         return EnrollmentDTO.enrollmentDTO(enrollment);
     }
+
+    @PostMapping("/quiz/{course_id}/{category}")
+    public QuizDTO quizResponse(@PathVariable Integer course_id, @PathVariable String category) {
+        Quiz quiz = courseService.addQuiz(course_id,category).getQuiz();
+        return QuizDTO.quizDTO(quiz);
+    }
+
 }

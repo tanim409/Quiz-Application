@@ -14,29 +14,25 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
-
+import java.util.stream.Stream;      // For stream operations (optional)
 @Service
 public class QuizService {
 
     @Autowired
-    QuizRepo repo;
+    QuizRepo quizRepo;
     @Autowired
     QuestionPatternRepo questionPatternRepo;
 
-    public ResponseEntity<List<QuizResponse>> quizResponse(String category) {
+    public List<QuizResponse> quizResponse(String category) throws Exception {
 
-        if (repo.findByCategory(category).isEmpty()) {
+        Quiz quizzes = quizRepo.findByCategory(category);
+
+        if (quizzes.getQuestions().isEmpty()) {
             throw new SecurityException("No Question Found for Category " + category);
         }
-        try {
-            List<QuizResponse> quizResponse = repo.findByCategory(category).stream()
-                    .flatMap(q -> q.getQuestions().stream())
-                    .map(this::ConvertToQuizResponse)
-                    .collect(Collectors.toList());
-            return new ResponseEntity<>(quizResponse, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return quizzes.getQuestions().stream()
+                .map(this::ConvertToQuizResponse)
+                .collect(Collectors.toList());
     }
 
     public QuizResponse ConvertToQuizResponse(Question quizR) {
@@ -63,7 +59,7 @@ public class QuizService {
         Quiz quiz = new Quiz();
         quiz.setCategory(category);
         quiz.setQuestions(questions);
-        repo.save(quiz);
+        quizRepo.save(quiz);
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
 

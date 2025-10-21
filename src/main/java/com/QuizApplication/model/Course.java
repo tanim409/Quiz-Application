@@ -26,6 +26,11 @@ public class Course {
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     List<Enrollment> enrollmentsByCourse;
 
+    @OneToOne
+    @JoinColumn(name = "quiz_id")
+    Quiz quiz;
+
+
 
 
 }

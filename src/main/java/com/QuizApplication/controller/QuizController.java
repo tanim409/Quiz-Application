@@ -29,8 +29,9 @@ public class QuizController {
     return quizService.insertQuiz(category);
     }
 
-    @GetMapping("/getQ/{category}")
-    ResponseEntity<List<QuizResponse>> quizResponse(@PathVariable String category) throws Exception {
+    @GetMapping("/getQues/{category}")
+    List<QuizResponse> quizResponse(@PathVariable String category) throws Exception {
+
         return quizService.quizResponse(category);
     }
     @PostMapping("/submit/{category}")

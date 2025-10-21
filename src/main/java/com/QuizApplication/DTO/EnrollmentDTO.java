@@ -15,8 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EnrollmentDTO {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Integer id;
 
     public static EnrollmentDTO enrollmentDTO(Enrollment enrollment) {
