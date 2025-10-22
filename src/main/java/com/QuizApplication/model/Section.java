@@ -1,5 +1,6 @@
 package com.QuizApplication.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jdk.jfr.ContentType;
 import lombok.Data;
@@ -19,10 +20,12 @@ public class Section {
     String imageUrl;
 
     @OneToMany(mappedBy = "section")
+    @JsonIgnore
     List<Example> examples;
 
     @ManyToOne
     @JoinColumn(name = "tutorial_id")
+    @JsonIgnore
     Tutorial tutorial;
 
 

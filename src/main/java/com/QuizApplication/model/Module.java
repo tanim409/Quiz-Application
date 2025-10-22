@@ -1,5 +1,6 @@
 package com.QuizApplication.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,10 +19,12 @@ public class Module {
 
  @ManyToOne
  @JoinColumn(name = "course_id")
+ @JsonIgnore
  private Course course;
 
  @OneToMany(mappedBy = "module", cascade = CascadeType.ALL)
- List<Lesson> lessons = new ArrayList<Lesson>();
+ @JsonIgnore
+ List<Lesson> lessons;
 
 
 }

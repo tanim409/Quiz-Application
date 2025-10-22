@@ -13,12 +13,15 @@ public class Enrollment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
     @ManyToOne
     @JoinColumn(name="course_id")
     private Course course;
+
     @CreationTimestamp
     private Date enrollmentDate;
 

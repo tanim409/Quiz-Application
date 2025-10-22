@@ -69,10 +69,16 @@ public class CourseService {
 
     public Course addQuiz(Integer course_id, String category) {
         Quiz quiz = quizrepo.findByCategory(category);
-        Course c = courserepo.findById(course_id).orElseThrow(()->new RuntimeException("course not found"));
-        Course course = new Course();
-        course.setId(course_id);
+        Course course = courserepo.findById(course_id).orElseThrow(()->new RuntimeException("course not found"));
         course.setQuiz(quiz);
         return courserepo.save(course);
+    }
+
+    public List<Enrollment> getAllEnrollment() {
+        return enrollmentRepo.findAll();
+    }
+
+    public List<Enrollment> getAllEnrollmentByCourseId(Integer courseId) {
+        return enrollmentRepo.findAllById(courseId);
     }
 }

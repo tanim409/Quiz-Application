@@ -1,5 +1,6 @@
 package com.QuizApplication.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,17 +16,17 @@ public class Lesson {
     String description;
 
     @OneToOne(mappedBy = "lesson",cascade = CascadeType.ALL)
+    @JsonIgnore
     Tutorial tutorial;
-    @OneToOne
-    @JoinColumn(name = "quiz_id")
-    Quiz quiz;
 
     @ManyToOne
     @JoinColumn(name = "module_id")
+    @JsonIgnore
     Module module;
 
     @ManyToOne
     @JoinColumn(name="courseId")
+            @JsonIgnore
     Course course;
 
 }

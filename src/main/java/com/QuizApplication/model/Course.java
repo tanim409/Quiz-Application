@@ -1,5 +1,6 @@
 package com.QuizApplication.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,16 +22,14 @@ public class Course {
 
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-    List<Module> modules = new ArrayList<>();
+    @JsonIgnore
+    List<Module> modules;
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    @JsonIgnore
     List<Enrollment> enrollmentsByCourse;
 
     @OneToOne
     @JoinColumn(name = "quiz_id")
     Quiz quiz;
-
-
-
-
 }
