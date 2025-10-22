@@ -33,12 +33,12 @@ Key Endpoints..
 
 Project Structure..
 src/main/java/com/QuizApplication/
--> config -> Security & Swagger config
--> controller -> REST APIs
--> service -> Business logic
--> repository -> Data access
--> model -> JPA entities
--> DTO -> Data Transfer Objects
--> exception -> Exception handling
+1. config -> Security & Swagger config
+2. controller -> REST APIs
+3. service -> Business logic
+4. repository -> Data access
+5. model -> JPA entities
+6. DTO -> Data Transfer Objects
+7. exception -> Exception handling
 
 
