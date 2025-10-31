@@ -1,7 +1,7 @@
 package com.QuizApplication.repo;
 
 
-import com.QuizApplication.model.Quiz;
+import com.QuizApplication.entities.Quiz;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

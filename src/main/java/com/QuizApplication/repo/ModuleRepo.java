@@ -2,7 +2,7 @@ package com.QuizApplication.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.QuizApplication.model.Module;
+import com.QuizApplication.entities.Module;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

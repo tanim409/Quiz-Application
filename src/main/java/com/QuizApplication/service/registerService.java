@@ -1,6 +1,6 @@
 package com.QuizApplication.service;
 import com.QuizApplication.exception.SecurityException;
-import com.QuizApplication.model.User;
+import com.QuizApplication.entities.User;
 import com.QuizApplication.repo.UserRepo;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
@@ -16,7 +16,7 @@ import java.security.spec.InvalidKeySpecException;
 @Service
 public class registerService {
     @Autowired
-    jwtService jwtService;
+    JwtService jwtService;
     @Autowired
     UserRepo repo;
     @Autowired

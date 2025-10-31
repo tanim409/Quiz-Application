@@ -1,7 +1,7 @@
 package com.QuizApplication.service;
 
-import com.QuizApplication.model.User;
-import com.QuizApplication.model.userSecurePrinciple;
+import com.QuizApplication.entities.User;
+import com.QuizApplication.entities.userSecurePrinciple;
 import com.QuizApplication.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

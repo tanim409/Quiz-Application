@@ -1,9 +1,11 @@
 package com.QuizApplication.service;
 
-import com.QuizApplication.DTO.*;
-
-import com.QuizApplication.model.*;
-import com.QuizApplication.model.Module;
+import com.QuizApplication.DTO.Course.ExampleDTO;
+import com.QuizApplication.DTO.Course.LessonDTORequest;
+import com.QuizApplication.DTO.Course.SectionDTO;
+import com.QuizApplication.DTO.Course.TutorialDTO;
+import com.QuizApplication.entities.*;
+import com.QuizApplication.entities.Module;
 import com.QuizApplication.repo.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +66,7 @@ public class LessonService {
         return sectionRepo.save(section);
     }
 
-    public Example addExample(ExampleDTO exampleDTO,Integer tutorialId,Integer sectionId) {
+    public Example addExample(ExampleDTO exampleDTO, Integer tutorialId, Integer sectionId) {
       Tutorial tutorial = tutorialRepo.findById(tutorialId).orElse(null);
       Section section = sectionRepo.findById(sectionId).orElse(null);
       Example example = new Example();

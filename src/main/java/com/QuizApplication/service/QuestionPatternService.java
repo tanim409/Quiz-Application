@@ -1,9 +1,9 @@
 package com.QuizApplication.service;
 
-import com.QuizApplication.DTO.QuestionRequest;
-import com.QuizApplication.DTO.QuestionResponse;
+import com.QuizApplication.DTO.Course.QuestionRequest;
+import com.QuizApplication.DTO.Course.QuestionResponse;
 import com.QuizApplication.exception.SecurityException;
-import com.QuizApplication.model.Question;
+import com.QuizApplication.entities.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,10 +1,10 @@
 package com.QuizApplication.service;
 
-import com.QuizApplication.DTO.CourseDTORequest;
-import com.QuizApplication.model.Course;
-import com.QuizApplication.model.Enrollment;
-import com.QuizApplication.model.Quiz;
-import com.QuizApplication.model.User;
+import com.QuizApplication.DTO.Course.CourseDTORequest;
+import com.QuizApplication.entities.Course;
+import com.QuizApplication.entities.Enrollment;
+import com.QuizApplication.entities.Quiz;
+import com.QuizApplication.entities.User;
 import com.QuizApplication.repo.CourseRepo;
 import com.QuizApplication.repo.EnrollmentRepo;
 import com.QuizApplication.repo.QuizRepo;
@@ -67,11 +67,11 @@ public class CourseService {
         return enrollmentRepo.save(enrollment);
     }
 
-    public Course addQuiz(Integer course_id, String category) {
+    public Quiz addQuiz(Integer course_id, String category) {
         Quiz quiz = quizrepo.findByCategory(category);
         Course course = courserepo.findById(course_id).orElseThrow(()->new RuntimeException("course not found"));
-        course.setQuiz(quiz);
-        return courserepo.save(course);
+        quiz.setCourse(course);
+        return quizrepo.save(quiz);
     }
 
     public List<Enrollment> getAllEnrollment() {

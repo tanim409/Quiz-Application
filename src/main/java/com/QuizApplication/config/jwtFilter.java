@@ -1,6 +1,6 @@
 package com.QuizApplication.config;
 
-import com.QuizApplication.service.jwtService;
+import com.QuizApplication.service.JwtService;
 import com.QuizApplication.service.userService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -20,7 +20,7 @@ import java.io.IOException;
 public class jwtFilter extends OncePerRequestFilter {
 
     @Autowired
-    jwtService jwtService;
+    JwtService jwtService;
     @Autowired
     userService userService;
 
