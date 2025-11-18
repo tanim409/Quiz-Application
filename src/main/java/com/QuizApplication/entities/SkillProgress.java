@@ -19,3 +19,4 @@ public class SkillProgress {
     @JoinColumn(name="userProgress_id")
     private UserProgress userProgress;
 }
+

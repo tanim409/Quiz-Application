@@ -10,11 +10,8 @@ public class Progress {
  @GeneratedValue(strategy = GenerationType.IDENTITY)
  private Integer id;
 
-
  @ManyToOne
  private Enrollment enrollment;
-
-
 
  @ManyToOne
  Lesson lesson;

@@ -26,7 +26,7 @@ public class Lesson {
 
     @ManyToOne
     @JoinColumn(name="courseId")
-            @JsonIgnore
+    @JsonIgnore
     Course course;
 
 }

@@ -25,21 +25,21 @@ public class registerService {
     BCryptPasswordEncoder passwordEncoder;
 
 
-    public User Register(User Securitymodel) {
-        Securitymodel.setPassword(passwordEncoder.encode(Securitymodel.getPassword()));
-        if (repo.findByUsername(Securitymodel.getUsername()) != null) {
+    public User Register(User securityModel) {
+        securityModel.setPassword(passwordEncoder.encode(securityModel.getPassword()));
+        if (repo.findByUsername(securityModel.getUsername()) != null) {
             throw new SecurityException("Username Already Exists");
         }
-        repo.save(Securitymodel);
-        return Securitymodel;
+        repo.save(securityModel);
+        return securityModel;
     }
 
-    public String verify(User Securitymodel) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public String verify(User securityModel) throws NoSuchAlgorithmException, InvalidKeySpecException {
         try {
             Authentication authentication =
-                    authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(Securitymodel.getUsername(), Securitymodel.getPassword()));
+                    authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(securityModel.getUsername(), securityModel.getPassword()));
             if (authentication.isAuthenticated()) {
-                return jwtService.generateJwtToken(Securitymodel.getUsername());
+                return jwtService.generateJwtToken(securityModel.getUsername());
             }
             throw new SecurityException("Authentication Failed");
         } catch (BadCredentialsException e) {
